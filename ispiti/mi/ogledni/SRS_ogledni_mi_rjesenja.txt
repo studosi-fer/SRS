@@ -1,0 +1,118 @@
+SRS Ogledni MI Rjesenja
+
+Aux — 22.04.2022 21:13
+evo rijesio sam ogledni (https://www.fer.unizg.hr/_download/repository/srs_mi_vjezba.pdf) iz srsa 
+pasteam ispod ove poruke sve (sve se da u .txt fino), pa pinnam, pa ako netko vidi nesto krivo javite pa fixam
+trebalo bi bit sve u redu, proso sam i cijeli thread na studosima pa pokupio tamo ideje
+also tamo su pasteali neke stvari koje je derek jos pojastio u vezi zadataka na teamsu prosle godine valjda, mene je recimo ovo zbunilo kak su objasnili da se stog puni al u biti isto ko na predavanju je
+1.
+a) incident
+b) tajnost, integritet, raspoloživost
+c) tajnost
+
+2.
+a) disk se prenosi nesigurnim kanalom a nije enkriptiran
+b) sam kurir (ili neka druga maliciozna osoba) može izmijeniti ili pročitati podatke s diska
+c) enkripcija diska
+
+3.
+a) državni interesi (špijunaža)
+b) zarada
+c) politički, svjetonazorski
+
+4.a) Analiza izvornog koda s ciljem detekcije sigurnosnih propusta
+
+5.b) Greška tijekom izvođenja
+
+6.c) Trebali bi zamijeniti izraz na liniji 1 sa ispitProlaz = false; i dodati uvjet else{ ispitProlaz =
+true;} nakon linije 6
+
+7.a) da (user/group/other : rw-/r--/r-x)
+
+8.b) Kerckhoffog principa
+
+9. 
+(e,N), (d,N)    
+
+N = p*q gdje su p i q prosti
+65 = 5 * 13 -> ok
+45 = 5 * 9 -> not ok, otpisujem sve sa 45
+
+znaci p=5, q=13
+fi(N) = (p-1)(q-1) = 4*12 = 48
+Z*_fi(N) = Z*_48 = {svi brojevi koji su relativno prosti s 48}
+48 dijele 2 i 3, znači e i d ne smiju biti djeljivi s 2 ili 3
+
+trazim e i d iz Z*_48 takve da je 
+    e^-1 = d u Z*_48
+        <=>
+    e * d = 1 u Z*_48
+        <=>
+    (e * d) mod 48 = 1 
+
+
+a) 5*1 mod 48 = 5
+b) 45 nije p*q
+c) 45 != 65
+d) 35*11 mod 48 = 1, 35 i 11 su u Z*_48 => ISPRAVAN PAR (35,65),(11,65)
+e) 45 nije p*q
+f) 3*22 mod 48 = 18 != 1
+g) 3*29 mod 48 = 39 != 1
+h) 19*43 mod 48 = 1, 19 i 43 su u Z*_48 => ISPRAVAN PAR (19,65),(43,65)
+
+
+10.
+a)
+    1. isčitaj iv, c1, c2, ..., cn iz šifrata c (svi su fiksne duljine)
+    2. za svaki i=1, ..., n izračunaj mi = AES128(iv+i, k) XOR ci
+    3. spoji sve blokove m1, m2, ..., mn u čisti tekst m
+    4. provjeri SHA256(m[:-32]) == m[-32:]
+    5. poruka je m[:-32] bez paddinga
+b) sto se tice enkripcije, radi se o Counter Modeu (CTR), koji je prakticki one-time-pad sa kljucem dobivenim iz AESa
+OTP i AES su povjerljivi ako se koristi uvijek drukciji kljuc, sto je ovdje istina
+stoga je i cijeli postupak potpuno povjerljiv
+c) OTP, pa tako i CTR, podlozni su "malleable encryptionu":
+ako napadač zna originalnu poruku m1 i presretne šifrat c1, on može originalnu poruku zamijeniti s novom m2 tako da pošalje šifrat c2 = c1 XOR m1 XOR m2 (see: slide 26 osnove kriptografije prvi dio)
+tada će se naravno izmijeniti i hash, no budući da se koristi SHA256 za koji ne treba ključ, napadač može izračunati i podmetnuti novi hash na isti način
+d) trebalo bi koristiti MAC umjesto hash funkcije
+
+
+11.
+a)    1. isčitaj c1, c2, ..., ck iz šifrata c 
+    2. za svaki i=1, ..., k izracunaj mi = ci^d MOD N
+    3. spoji sve mi i makni padding = poruka m
+b) 
+moguce je pogadat blokove buduci da napadac ima mogucnost generirati njihove kriptate (2^128 je mogucih, sto je puno, al s vremenom ce pogodit neke)
+isti plaintext blokovi ce imati iste blokove u sifratu
+c) poruke bi trebalo šifrirati nekim algoritmom sa simetričnom šifrom, a sa RSA bi se eventualno trebalo kriptirati ključevi za simetrični algoritam
+
+
+12.
+stog:
+
+--niže adrese
+...
+niz[8]
+niz[9]
+n
+i
+spremljen %rbp
+adresa za povratak
+opisnik funkcije
+--više adrese
+
+a) Programer je napravio grešku - u petljama mu je <= umjesto <. Konkretno, ovo nam dozvoljava da za n prvo upišemo 10, i onda ćemo u "// Procitaj elemente" petlji moći unijeti vrijednost za niz[10], što pokazuje na varijablu n. 
+
+Sada taj n možemo povećati na bilo koji broj želimo, te će sljedeća petlja "// Ispisi elemente" tada nastaviti dalje ispisivati sve što se nalazi ispod na stogu.
+
+Jedini još detalj je da neposredno nakon što unesemo broj za niz[10] tj. n, moramo još postaviti i varijablu i (tj. niz[11]) na broj veći od n kako bismo izašli iz petlje.
+
+b) Ovo je standardni buffer overflow napad, samo što moramo opet napraviti ovo s prepisivanjem n-a (jer se provjerava n <= 10).
+
+Ovaj puta nećemo odmah htjeti izaći iz petlje, već ćemo postaviti "n" i "i" tako da se vrtimo dovoljno dugo u petlji da umetnemo ono što želimo.
+
+A ono što želimo umetnuti je prvo određeno količinu NOP sleda, onda naš shellcode, i onda adresu s kojom "pogađamo" NOP sled.
+
+c) Kanarinac je neki random broj kojeg compiler umetne neposredno prije povratne adrese. Kada naleti na povratnu adresu, proces će provjeriti kanarinca, i ako se taj broj promijenio znat će da nešto nije u redu i prekinit će se.
+
+za 12.b) moze i bolje:

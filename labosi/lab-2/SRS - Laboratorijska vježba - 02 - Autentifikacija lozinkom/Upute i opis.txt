@@ -1,0 +1,42 @@
+Usermgmt:
+	Alat za upravljanje korisnicima koji se čuvaju u datoteci "user_data.txt".
+
+	U klasi se nalazi glavna metoda "main" koja pokreće program. Metoda prvo čita podatke korisnika iz datoteke "user_data.txt", a zatim traži unos naredbe od korisnika preko standardnog ulaza. Ovisno o naredbi koju korisnik unese, program dodaje, briše ili mijenja korisnička imena i lozinke.
+
+	Klasa koristi mapu "userMap" za spremanje korisničkih imena i hashiranih lozinki. Hashiranje se provodi pomoću metode "generateSalt" koja generira nasumični niz znakova i koristi SHA-256 algoritam za stvaranje jedinstvenog hash koda za korisnika.
+
+	Metoda "addChangeUserPassword" dodaje ili mijenja korisničku lozinku za određeno korisničko ime, dok metoda "isPasswordValid" provjerava ispunjava li lozinka određene uvjete, kao što su duljina od najmanje 8 znakova i sadrži li velika slova, mala slova i specijalne znakove.
+
+	Program također omogućuje forsiranje korisnika da promijene svoje lozinke nakon sljedeće prijave pomoću naredbe "forcepass".
+
+	Korisnička sučelja i ulazni podaci programu daju putem naredbenog retka. Ako se korisnik unese neispravnu naredbu, program će ispisati poruku o pogrešci. Na kraju, program sprema korisnička imena i hashirane lozinke u datoteku "user_data.txt".
+
+
+Login:
+	Alat za prijavu korisnika koji se čuvaju u datoteci "user_data.txt"
+
+	U klasi se nalazi glavna metoda "main" koja pokreće program. Metoda prvo čita podatke korisnika iz datoteke "user_data.txt", a zatim traži unos korisničkog imena i lozinke preko standardnog ulaza.
+
+	Kod koristi mapu "userMap" za spremanje korisničkih imena i hashiranih lozinki. Hashiranje se provodi pomoću metode "generateSalt" koja generira nasumični niz znakova i koristi SHA-256 algoritam za stvaranje jedinstvenog hash koda za korisnika.
+
+	Nakon što korisnik unese korisničko ime i lozinku, program provjerava postoje li korisničko ime i hashirana lozinka u mapi "userMap". Ako postoji, program provjerava je li unesena lozinka ispravna, generira novi salt, hashira novu lozinku i sprema je u mapu "userMap".
+
+	Ako se korisnik uspješno prijavi, program ispisuje poruku "Login successful". Ako lozinka nije ispravna, program ispisuje poruku "Username or password incorrect".
+
+	Program također omogućuje administratorima da zahtijevaju promjenu lozinke nakon prijave. Ako je administrator zatražio promjenu lozinke, program će zahtijevati unos nove lozinke od korisnika. Ako je nova lozinka ispravna, program će hashirati novu lozinku i spremiti je u mapu "userMap".
+
+	Na kraju, program sprema korisnička imena i hashirane lozinke u datoteku "user_data.txt".
+
+
+Alati koriste nekoliko metoda zaštite lozinke:
+
+	Hashiranje: Korisničke lozinke se ne pohranjuju u tekstualnom obliku, već se hashiraju korištenjem SHA-256 algoritma. Ovo sprječava neovlašteni pristup korisničkim lozinkama.
+
+	Salt: Kod koristi salt kako bi otežao rješavanje hashova lozinki kroz napade poput "rainbow tablica". Salt se generira koristeći metodu "generateSalt" i dodaje se korisničkom imenu kako bi stvorio jedinstveni hash kôd za korisničkom ime i lozinku.
+
+	Zahtjevi za jaku lozinku: Metoda "isPasswordValid" provjerava jesu li lozinke dovoljno jake prema zadanim kriterijima, kao što su minimalna duljina, velika i mala slova i specijalni znakovi. Ovo osigurava da korisnici ne koriste jednostavne lozinke koje su podložne napadima.
+
+	Provjera korisnika: Kod provjerava postoje li korisnička imena prije nego što omogući promjene lozinke ili brisanje korisničkog računa. Ovo osigurava da samo postojeći korisnici mogu pristupiti svojim računima i obaviti promjene ili brisanje računa.
+
+
+Za korištenje prvo je potrebno kompajlirati kod naredbom "javac UserMgmt.java" odnosno "javac Login.java" nakon čega se program iz command line-a pokreće naredbom "java UserMgmt" odnosno "java Login".

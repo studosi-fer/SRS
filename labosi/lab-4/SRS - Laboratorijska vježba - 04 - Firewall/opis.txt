@@ -1,0 +1,32 @@
+U Wiresharku je moguće vidjeti svi paketi između klijenta i demilitizirane zone. Za početak tzv. handshake za uspostavljanje veze te za kraj FIN pakete za raskid veze.
+
+Koristeći opciju "Follow > TCP Stream" pri povezivanju Telnet protokolom možemo iščitati informacije koje su klijentu ispisane na terminal kao i one koje je on upisao (uključujući lozinku u plain text formatu!).
+Ispid TCP Stream-a:
+........... ..!.."..'........ ..#..'........!..".....#....P...... .....'........... .38400,38400....'.......vt100...........Debian GNU/Linux 9
+...www login: aaddmmiinn
+.
+Password: admin123
+.
+
+Login incorrect
+www login: ...^C
+
+SSH je za razliku od Telneta šifriran što znači da koristeći opciju "Follow > TCP Stream" nećemo moći iščitati nikakve informacije osim samog handshake-a i detalja oko korištenog protokola.
+Ispis TCP Stream-a:
+SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7
+SSH-2.0-OpenSSH_7.4p1 Debian-10+deb9u7
+..........\z1.|...r......0curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group-exchange-sha1,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1,ext-info-c..."ecdsa-sha2-nistp256-cert-v01@openssh.com,ecdsa-sha2-nistp384-cert-v01@openssh.com,ecdsa-sha2-nistp521-cert-v01@openssh.com,ssh-ed25519-cert-v01@openssh.com,ssh-rsa-cert-v01@openssh.com,ecdsa-sha2-nistp256,ecdsa-sha2-nistp384,ecdsa-sha2-nistp521,ssh-ed25519,rsa-sha2-512,rsa-sha2-256,ssh-rsa....chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc....chacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com,aes128-cbc,aes192-cbc,aes256-cbc....umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1....umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1....none,zlib@openssh.com,zlib....none,zlib@openssh.com,zlib...........................4..f..@...(............curve25519-sha256,curve25519-sha256@libssh.org,ecdh-sha2-nistp256,ecdh-sha2-nistp384,ecdh-sha2-nistp521,diffie-hellman-group-exchange-sha256,diffie-hellman-group16-sha512,diffie-hellman-group18-sha512,diffie-hellman-group14-sha256,diffie-hellman-group14-sha1...Assh-rsa,rsa-sha2-512,rsa-sha2-256,ecdsa-sha2-nistp256,ssh-ed25519...lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com...lchacha20-poly1305@openssh.com,aes128-ctr,aes192-ctr,aes256-ctr,aes128-gcm@openssh.com,aes256-gcm@openssh.com....umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1....umac-64-etm@openssh.com,umac-128-etm@openssh.com,hmac-sha2-256-etm@openssh.com,hmac-sha2-512-etm@openssh.com,hmac-sha1-etm@openssh.com,umac-64@openssh.com,umac-128@openssh.com,hmac-sha2-256,hmac-sha2-512,hmac-sha1....none,zlib@openssh.com....none,zlib@openssh.com......................,..... ...n....,..w.s
+~.Z.Y ...6......@...............h....ecdsa-sha2-nistp256....nistp256...A..S.(.F..F.o.|.*.........qNP...).n...w.....Y..4.*..__
+)u.*Y.....M... ....C.7...A.?....T..H:......v:.!...c....ecdsa-sha2-nistp256...H... .h9.j..3.u7z../.*7....D.W."9m,..... 
+..L.;..R.IX..<_....~.-.S.n.W..................
+...........Y.|......}.d....!...pk....\...lp......"n.R%...M.....7...64Ie.E..X..h\9..|....UR..
+...-<..C....w....	%C..r..M|.....15WVv%i}.e.B..g.$..^*.=.......
+...........2.`@..4B...h.......bG...d...VY.....Ff.P.......`n>..
+J..B\..0...eVp,.
+.Z.c...X.xa...3.).0Z.......C.....#F<..cm..+....I..I.k...,.n..z	.s...|.1n....F/&.pQ..........v.X.
+.r?+....w.'GT.~..4`g..[......9lb.,}N...;.!....v.%......~.T.`..,.h....H......u.O4.F=*..|I.s8....c.....R.P..
+>.C.oqqy8..f..bo.q.XK."2S........kbC...$...]...d9.[.VabY,..AyN..K	0B......`._0.......Z@..f.-.7...;...j.Q...i.A......C!..]..4.0.:.@.:.......{...]y.....6.x2.G.7.].Vm.;,.....j...A..4.]..b.d.q.,"I....w..7./!.<..W"k...e*........?....P...)....a...
+.[..w...(..qU....%...
+
+
+Nakon ovoga sam išao postaviti Firewall. Svako pravilo je dodano na odgovarajuće mjesto stoga i više manje je self explanatory (korištene su uzorci -p, -s, -d, -i te -o, kao i --dport prema primjerima u prezentaciji). Pravila su dodavana jedno ispod drugog da se tim redoslijedom čitaju i kad naiđe na jedno koje odgovara to se pravilo izvrši.

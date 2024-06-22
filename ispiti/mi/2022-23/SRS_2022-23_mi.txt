@@ -1,0 +1,97 @@
+1. (2b, 1 krivi -0.5, 2 kriva -1, 4 kriva 0)
+username$algoritam$salt$hash_vrijednot za 6 korisnika
+i onda puno da/ne imaju li korisnici iste lozinke ili ne 
+zadnja dva 5 i 6. imaju li tocno jednu istu znamenku razlicitu lozinke ili vise od dvije
+
+2. (1b, 6 da/ne, jedan krivi -0.5, 2 kriva nula)
+bili korisnici mirko, root i backup, grupe users i shadow, svi su users, a shadow root/backup? 
+naredba je izledala kao slajd 45. u prezi sa OS-om prvi znak je bio l ili d ili prazno sveukupno 10 znakova, ne onako kao u ranijim ispitima po 9
+a ostalih 9 su bili ili r ili w ili prazno
+odgovori
+ne moze li mirko citati
+ne         mirko pisati
+ne
+da
+da
+da
+
+3. (3b)
+a) subjekt objekt i čitanje iz teksta navesti što je
+
+b) koja 2 tipa autorizacija postoji
+
+c) koji je tip autorizacije je bio u zadatku
+
+4. (3b)
+nabroji 3 autentifikacijskih mehanizma i koji su faktor
+je li ako se logira sa username i password i doda se oib, je li to 2- faktorska? nije jer i dalje to što znamo
+objasni sto bi jos dodali da je 2-faktorska i koji je to faktor
+
+4. (2b)
+Za situaciju ...
+primjer ranjivosti
+    prijetnje
+    aktora prijetnje
+    izvora prijetnje
+
+5. (3b)
+neki opis ...
+je li crv guloader.exe objasni -nije crv jer se ne siri mrezom
+sto je ona adresa -c&c poslužitelj
+je li trojanac netwire.exe i objasni - nije trojanac nekako se iz teksta vidi
+
+7. (3b)
+koji princip prekrsen ako svi korisnici imaju sve ovlasti -princip najmanje ovlasti
+koji je princip prekrsen ako se koristi kriptografksa funkcija sazetka koja je poznata samo par ljudi -Kerckhoffov princip
+kod i kako popraviti sigurno ispadanje gdje je na pocetku bilo nesto=true, slican kod prijasnjim zadacima sa ispita ali ovdje objasniti
+
+8. (3b)
+formula za rsa enkripciju
+formula za digitalni potpis
+formula za digitalnu omotnicu?
+
+9. (1b, 1 krivi -0.5, 2 kriva 0)
+Pruza li jednokratna biljeznica : 
+savrsenu povjerljivost da/ne  jedino da
+integritet da/ne
+raspoloživost da/ne
+autentičnost da/ne
+neporecivost da/ne 
+
+10. (6b)
+nesto s kolacicima kao sifrat c
+spreman iv 16 bajtova i c 32 bajtova
+
+postupak enkripcije
+1
+2
+3koristio se nesto = iv aes128 cbc(k,iv,p)
+4 
+5
+postupak dekripcije
+1provjera je li 48 bajtova
+2
+3
+4
+5
+
+a za p=p1p2 to opisati formulu i skicu samo cbc nacin mislim da enkripcija
+b za x=x1||x2 to opisati formulu i skicu samo cbc nacin tu dekripcija
+c napad na to ako se ulogirani korisnik ana zeli ulogirati kao admin ?
+d opisati nacin zastite ovog sustava sa samo simetricnim
+e opisati zastitu sa samo asimetricnim  nije priznavalo mix asimetricne i simetrice trebalo je mislim vjerojatno digitalna omotnica mozda potpis?
+
+11. (6b)
+text pa kod pa opis nekakav od chatgpt-a
+a nesto jednostavno sa kolizijama kod sha256
+b zasto chatgpt to sa problemom i a to sa kolizijama smatra ne smatra opasnim jer vjerojatno nece doci do kolizija u sha256 jer vjerojatnost mala
+c nesto sa sesijama
+d sto u kodu popraviti, nesto u tekstu bilo i sa chmod i nesto jos slicno
+? da moze pokretati svoje datoteke ili .exe? 
+
+12. (7b)
+write xor execute koristen samo, ne onaj drugi
+a crtati stog i sto upisati ? 40 bajtova u little endianu?
+b ?
+c kanarinci i stog isto urediti
+d opis za pop ret ?, slika stoga i naredbi zadani u zadatku i onda koje naredbe bi trebali unijeti da napravi nesto 
